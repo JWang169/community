@@ -18,3 +18,10 @@ Redirect to login and logout:
 
 POST APP:
 	1. _post.html: use this to inject it into other posts.html files. Sometimes if the single html page or single template is getting too big and overly complicated, use _post to break it up and inject it. 
+
+GROUP APP:
+	1. Slugify: if there is a string you want to use that as part of your url, it's going to be able to lowercase and add dashes instead of spaces
+	2. Misaka: for link embedding. Have to install first
+
+
+
