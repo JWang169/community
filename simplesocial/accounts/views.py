@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.core.urlresolvers import reverse_lazy  # in case someone is logged in or logged out, where should the page go
+from django.urls import reverse_lazy  # in case someone is logged in or logged out, where should the page go
 from django.views.generic import CreateView
 
 from . import forms
