@@ -14,6 +14,7 @@ Redirect to login and logout:
     1. Set up login to redirect your URL and log out redirect URL that the login and logout views are going to call. Set it in setting.py. 
     2. Add testpage and thankspage in views.py, so they can be connected to urls.py
 
+##### bootstrap4 updated nabber class.
 
 POST APP:
 	1. _post.html: use this to inject it into other posts.html files. Sometimes if the single html page or single template is getting too big and overly complicated, use _post to break it up and inject it. 
