@@ -1,3 +1,9 @@
+BULLETS:
+Improved the view code by using mixins with class-based views
+
+
+
+
 accounts/models.py: 
     create the user model by importing "auth.models.User" and "auth.models.PermissionsMixin"
 
