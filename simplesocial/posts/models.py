@@ -1,14 +1,15 @@
 from django.db import models
-from django.urls import reverse
 from django.conf import settings
+from django.urls import reverse
 
+# pip install misaka
 import misaka
 
 from groups.models import Group
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-# Create your models here.
 
 class Post(models.Model):
     user = models.ForeignKey(User, related_name="posts",on_delete=models.CASCADE)
@@ -21,9 +22,6 @@ class Post(models.Model):
         return self.message
 
     def save(self, *args, **kwargs):
-        # if someone writes in a mark down so they put a link in their post
-        # it doesn't look like a string
-
         self.message_html = misaka.html(self.message)
         super().save(*args, **kwargs)
 
