@@ -1,4 +1,4 @@
 # community
-create account funcionality for website
+This is a rewrite for my previous broken community project.
 
 
