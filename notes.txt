@@ -31,3 +31,9 @@ GROUP APP:
 
 
 
+HEROKU:  locate to the project directory first.
+1. Create a requirement.txt to store all dependencies.
+2. Install gunicorn (pip install gunicorn)
+3. Run pip freeze. Then got all the dependencies. Copy all and paste into the requirement.txt file. (Just run pip freeze > requirements.txt, it automatically saved to the txt. )
+4. Use git. the .git file is hidden file. Shift + command + . to show it.
+5. There are certain files we don't want git to track, like anything specific to my machine. We will ignore those files 
