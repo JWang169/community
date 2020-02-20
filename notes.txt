@@ -36,4 +36,26 @@ HEROKU:  locate to the project directory first.
 2. Install gunicorn (pip install gunicorn)
 3. Run pip freeze. Then got all the dependencies. Copy all and paste into the requirement.txt file. (Just run pip freeze > requirements.txt, it automatically saved to the txt. )
 4. Use git. the .git file is hidden file. Shift + command + . to show it.
-5. There are certain files we don't want git to track, like anything specific to my machine. We will ignore those files 
+5. There are certain files we don't want git to track, like anything specific to my machine. We will ignore those files. Copy paste all from .gitignore and create a new file under the project directory 
+6. Create a Heroku app from Heroku command. Run: heroku create {appname}.
+After creation, run the url (heroku open) or just copy paste it.
+7. Run command: git push heroku master. This is to deploy my Django project
+
+This step failed because of the static file. 
+
+" django.core.exceptions.ImproperlyConfigured: You're using the staticfiles app without having set the STATIC_ROOT setting to a filesystem path.
+remote: 
+remote:  !     Error while running '$ python simplesocial/manage.py collectstatic --noinput'.
+remote:        See traceback above for details.
+remote: 
+remote:        You may need to update application code to resolve this error.
+remote:        Or, you can disable collectstatic for this application:
+remote: 
+remote:           $ heroku config:set DISABLE_COLLECTSTATIC=1
+"
+
+
+TO SOLVE THIS:
+	go to the Django project, settings -> STATIC_URL add this line:
+		STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
