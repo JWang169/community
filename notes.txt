@@ -31,7 +31,9 @@ GROUP APP:
 
 
 
-HEROKU:  locate to the project directory first.
+HEROKU:  
+
+locate to the project directory first.
 1. Create a requirement.txt to store all dependencies.
 2. Install gunicorn (pip install gunicorn)
 3. Run pip freeze. Then got all the dependencies. Copy all and paste into the requirement.txt file. (Just run pip freeze > requirements.txt, it automatically saved to the txt. )
@@ -59,3 +61,12 @@ TO SOLVE THIS:
 	go to the Django project, settings -> STATIC_URL add this line:
 		STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+8. After that, update the project on github(just git add* blabla) and rerun git push heroku master
+
+9. Run heroku open again. Get another error: Application error. It prompts to check my logs for details.
+
+10. Run heroku logs --tail in command line. Got a lot of logs. The error means that I haven't tell heroku how I wanted to run my project. Create a proc file to fix this.
+
+11. In the root of project directory, create proc file. Procfile without txt extension
+ 
+ 
