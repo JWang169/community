@@ -1,23 +1,27 @@
 from django.db import models
+from django.conf import settings
+from django.urls import reverse
 from django.utils.text import slugify
-from django import template
-from django.contrib.auth import get_user_model  # get the user model currently active in this project
+# from accounts.models import User
+
+# pip install misaka
 import misaka
 
-# slugify:
-# if there is a string you want to use that as part of your url,
-# it's going to be able to lowercase and add dashes instead of spaces
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
-User = get_user_model()  # get user models in this project
-register = template.Library()  # this is how we can use custom template tags in the future
+# https://docs.djangoproject.com/en/2.0/howto/custom-template-tags/#inclusion-tags
+# This is for the in_group_members check template tag
+from django import template
+register = template.Library()
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=256, unique=True)
+    name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(allow_unicode=True, unique=True)
     description = models.TextField(blank=True, default='')
     description_html = models.TextField(editable=False, default='', blank=True)
-    members = models.ManyToManyField(User, through='GroupMember')
+    members = models.ManyToManyField(User,through="GroupMember")
 
     def __str__(self):
         return self.name
@@ -27,15 +31,20 @@ class Group(models.Model):
         self.description_html = misaka.html(self.description)
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse("groups:single", kwargs={"slug": self.slug})
+
+
+    class Meta:
+        ordering = ["name"]
 
 
 class GroupMember(models.Model):
-    group = models.ForeignKey(Group, related_name='memberships', on_delete=models.CASCADE)
-    # this means the groupMember is linked to group by the 'memberships' foreignKey
-    user = models.ForeignKey(User, related_name='user_groups', on_delete=models.CASCADE)
+    group = models.ForeignKey(Group,related_name='memberships',on_delete=models.CASCADE)
+    user = models.ForeignKey(User,related_name='user_groups',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
 
     class Meta:
-        unique_together = ('group', 'user')
+        unique_together = ("group", "user")
