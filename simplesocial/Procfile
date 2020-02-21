@@ -1,1 +1,1 @@
-web: gunicorn simplesocial.wsgi
+web: gunicorn simplesocial.simplesocial.wsgi
